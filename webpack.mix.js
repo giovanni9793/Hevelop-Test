@@ -12,6 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .js('resources/js/bootstrap.js', 'public/js')
+    .js('resources/js/custom.js', 'public/js')
+    .postCss('resources/css/bootstrap.css', 'public/css')
+    .postCss('resources/css/font-awesome.min.css', 'public/css')
+    .postCss('resources/css/responsive.css', 'public/css')
+    .postCss('resources/css/style.css', 'public/css').sourceMaps();
+    // .sass('resources/css/style.scss', 'public/css').sourceMaps();

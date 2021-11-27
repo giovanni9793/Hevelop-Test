@@ -10,50 +10,51 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ URL::asset('css/app.css'); }}">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.css') }}" />
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+        crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ URL::asset('css/responsive.css') }}" rel="stylesheet" />
 </head>
 
 <body class="antialiased">
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-            @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        {{ count($errors) > 0 ? $errors : '' }}
+        <form method="POST" action="{{ route('authenticate') }}">
+            {!! csrf_field() !!}
 
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}"
-                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
+            <div>
+                Email
+                <input type="email" name="email" value="{{ old('email') }}">
+            </div>
 
-        <div>
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Descrizione</th>
-                    <th>Prezzo</th>
-                    <th>Immagine</th>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                    <td>Germany</td>
-                </tr>
-            </table>
-        </div>
+            <div>
+                Password
+                <input type="password" name="password" id="password">
+            </div>
+
+            <div>
+                <input type="checkbox" name="remember"> Remember Me
+            </div>
+
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
 
     </div>
 </body>

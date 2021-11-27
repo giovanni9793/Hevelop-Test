@@ -15,6 +15,7 @@ class Product
         'Descrizione',
         'Prezzo',
         'Immagine',
+        'Categoria'
     ];
 
     /**

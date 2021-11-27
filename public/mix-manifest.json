@@ -1,4 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/custom.js": "/js/custom.js",
+    "/css/style.css": "/css/style.css",
+    "/css/responsive.css": "/css/responsive.css",
+    "/css/font-awesome.min.css": "/css/font-awesome.min.css",
+    "/css/bootstrap.css": "/css/bootstrap.css"
 }
