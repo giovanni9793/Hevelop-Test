@@ -26,6 +26,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/product', [ProductController::class, 'index']);
-Route::post('/product', [ProductController::class, 'store']);
+Route::get('/product', [ProductController::class, 'index'])->name('showProducts');
+Route::get('/product/add', [ProductController::class, 'add']);
+Route::post('/product', [ProductController::class, 'store'])->name('product');
 Route::get('/details/{productId}', [ProductController::class, 'details']);

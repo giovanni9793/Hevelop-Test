@@ -16,20 +16,23 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::select('select * from products');
+        $products = DB::table('products')->select()->get();
 
         return view('product', ['products' => $products]);
     }
 
     public function details($id)
     {
-        // $details = // Product::where(function ($query) {
-        $details=DB::table('products')
-                ->where('id', $id)
-                ->first();
-        // })->get();
+        $details = DB::table('products')
+            ->where('id', $id)
+            ->first();
 
         return view('details', ['details' => $details]);
+    }
+
+    public function add()
+    {
+        return view('add');
     }
 
     /**
@@ -40,16 +43,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'Nome' => 'required|string',
-        //     'Descrizione' => 'required|string',
-        //     'Prezzo' => 'required|string|regex:/^(?:d*.d{1,2}|d+)$/',
-        //     'Immagine' => 'required|string',
-        // ]);
-        DB::insert('insert into products (Nome, Descrizione, Prezzo, Immagine) values (?, ?, ?, ?)', ['Carbonara', 'Piatto bello', 17.45, 'Percorso immagine']);
-
-
-
-        //
+        $request->validate([
+            'Nome' => 'required|string',
+            'Descrizione' => 'required|string',
+            'Prezzo' => 'required|numeric',
+            'Immagine' => 'required|string',
+        ]);
+        $nome = $request->input('Nome');
+        $descrizione = $request->input('Descrizione');
+        $prezzo = $request->input('Prezzo');
+        $immagine = $request->input('Immagine');
+        DB::table('products')->insert(['Nome' => $nome, 'Descrizione' => $descrizione, 'Prezzo' => $prezzo, 'Immagine' => $immagine]);
+        unset($request);
+        return redirect(route('showProducts'));
     }
 }
